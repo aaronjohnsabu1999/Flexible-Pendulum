@@ -1,0 +1,165 @@
+﻿# encoding: utf-8
+# Release 16.2
+SetScriptVersion(Version="16.2.176")
+template1 = GetTemplate(
+    TemplateName="Transient Structural",
+    Solver="ANSYS")
+system1 = template1.CreateSystem()
+template2 = GetTemplate(
+    TemplateName="Static Structural",
+    Solver="ANSYS")
+system2 = template2.CreateSystem(
+    Position="Right",
+    RelativeTo=system1)
+template3 = GetTemplate(TemplateName="Rigid Dynamics")
+system3 = template3.CreateSystem(
+    Position="Right",
+    RelativeTo=system2)
+template4 = GetTemplate(TemplateName="EngData")
+system4 = template4.CreateSystem(
+    Position="Left",
+    RelativeTo=system1)
+template5 = GetTemplate(TemplateName="Mesh")
+system5 = template5.CreateSystem(
+    Position="Below",
+    RelativeTo=system4)
+template6 = GetTemplate(TemplateName="Geometry")
+system6 = template6.CreateSystem(
+    Position="Above",
+    RelativeTo=system4)
+geometry1 = system6.GetContainer(ComponentName="Geometry")
+geometry1.Edit()
+geometry1.Exit()
+fileType1 = GetFileType(Name="GeometryFileType")
+ImportFile(
+    FilePath="X:/Flexible_Pendulum/Ansys_Structural_Analysis/MechanicalAssembly.IGS",
+    FileType=fileType1)
+system6.Delete()
+geometryComponent1 = system1.GetComponent(Name="Geometry")
+system7 = GetSystem(Name="Geometry")
+geometryComponent2 = system7.GetComponent(Name="Geometry")
+geometryComponent1.ReplaceWithShare(
+    TargetSystem=system1,
+    ComponentToShare=geometryComponent2,
+    SourceSystem=system7)
+geometryComponent3 = system2.GetComponent(Name="Geometry")
+geometryComponent3.ReplaceWithShare(
+    TargetSystem=system2,
+    ComponentToShare=geometryComponent2,
+    SourceSystem=system7)
+geometryComponent4 = system3.GetComponent(Name="Geometry")
+geometryComponent4.ReplaceWithShare(
+    TargetSystem=system3,
+    ComponentToShare=geometryComponent2,
+    SourceSystem=system7)
+geometry2 = system5.GetContainer(ComponentName="Geometry")
+geometry2.Edit()
+geometry2.Exit()
+geometryComponent5 = system5.GetComponent(Name="Geometry")
+geometryComponent5.ReplaceWithShare(
+    TargetSystem=system5,
+    ComponentToShare=geometryComponent2,
+    SourceSystem=system7)
+geometryComponent1.DeleteShare(System=system1)
+geometryComponent4.DeleteShare(System=system3)
+geometryComponent3.DeleteShare(System=system2)
+geometryComponent1.ReplaceWithShare(
+    TargetSystem=system1,
+    ComponentToShare=geometryComponent5,
+    SourceSystem=system5)
+geometryComponent3.ReplaceWithShare(
+    TargetSystem=system2,
+    ComponentToShare=geometryComponent5,
+    SourceSystem=system5)
+geometryComponent4.ReplaceWithShare(
+    TargetSystem=system3,
+    ComponentToShare=geometryComponent5,
+    SourceSystem=system5)
+engineeringDataComponent1 = system1.GetComponent(Name="Engineering Data")
+engineeringDataComponent2 = system4.GetComponent(Name="Engineering Data")
+engineeringDataComponent1.ReplaceWithShare(
+    TargetSystem=system1,
+    ComponentToShare=engineeringDataComponent2,
+    SourceSystem=system4)
+engineeringDataComponent3 = system2.GetComponent(Name="Engineering Data")
+engineeringDataComponent3.ReplaceWithShare(
+    TargetSystem=system2,
+    ComponentToShare=engineeringDataComponent2,
+    SourceSystem=system4)
+engineeringDataComponent4 = system3.GetComponent(Name="Engineering Data")
+engineeringDataComponent4.ReplaceWithShare(
+    TargetSystem=system3,
+    ComponentToShare=engineeringDataComponent2,
+    SourceSystem=system4)
+system1.Move(
+    Position="Above",
+    RelativeTo=system2)
+system5.Move(
+    Position="Above",
+    RelativeTo=system3)
+system1.Move(
+    Position="Right",
+    RelativeTo=system2)
+system1.Move(
+    Position="Above",
+    RelativeTo=system5)
+system1.Move(
+    Position="Right",
+    RelativeTo=system3)
+system2.Move(
+    Position="Left",
+    RelativeTo=system3)
+system5.Move(
+    Position="Left",
+    RelativeTo=system2)
+geometryComponent4.DeleteShare(System=system3)
+geometryComponent4.ReplaceWithShare(
+    TargetSystem=system3,
+    ComponentToShare=geometryComponent5,
+    SourceSystem=system5)
+geometryComponent4.DeleteShare(System=system3)
+geometryComponent4.ReplaceWithShare(
+    TargetSystem=system3,
+    ComponentToShare=geometryComponent3,
+    SourceSystem=system2)
+geometryComponent1.DeleteShare(System=system1)
+geometryComponent4.DeleteShare(System=system3)
+engineeringDataComponent1.DeleteShare(System=system1)
+engineeringDataComponent1.ReplaceWithShare(
+    TargetSystem=system1,
+    ComponentToShare=engineeringDataComponent2,
+    SourceSystem=system4)
+geometryComponent4.ReplaceWithShare(
+    TargetSystem=system3,
+    ComponentToShare=geometryComponent5,
+    SourceSystem=system5)
+geometryComponent1.ReplaceWithShare(
+    TargetSystem=system1,
+    ComponentToShare=geometryComponent5,
+    SourceSystem=system5)
+Save(Overwrite=True)
+meshComponent1 = system5.GetComponent(Name="Mesh")
+meshComponent1.Refresh()
+mesh1 = system5.GetContainer(ComponentName="Mesh")
+mesh1.Edit()
+mesh1.Exit()
+geometry3 = system1.GetContainer(ComponentName="Geometry")
+geometry3.Edit()
+geometry3.Exit()
+meshComponent1.Refresh()
+mesh1.Edit()
+mesh1.Exit()
+favorites1 = EngData.LoadFavoriteItems()
+library1 = EngData.OpenLibrary(
+    Name="Explicit Materials",
+    Source="Explicit_Materials.xml")
+engineeringData1 = system1.GetContainer(ComponentName="Engineering Data")
+matl1 = engineeringData1.ImportMaterial(
+    Name="POLYSTYREN",
+    Source="Explicit_Materials.xml")
+EngData.EnableFilter(Enable=False)
+EngData.EnableFilter()
+material1 = engineeringData1.GetMaterial(Name="Structural Steel")
+material1.Delete()
+Save(Overwrite=True)
+Open(FilePath="X:/GitHub/AE419_Supervised_Learning/3D_Prototypes/Prototype_05/Ansys_Structural_Analysis/Spring/Spring_Analysis.wbpj")

@@ -1,0 +1,13 @@
+/COM,ANSYS RELEASE Release 16.2      BUILD 16.2      UP20150629       11:37:41
+
+ *** WARNING ***                         CP =       1.641   TIME= 11:37:49
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** ERROR ***                           CP =   15420.844   TIME= 13:59:31
+ The run is terminated at the user's request from the ABT file.          
+
+ *** WARNING ***                         CP =   15420.859   TIME= 13:59:31
+ The unconverged solution (identified as time 5 substep 999999) is       
+ output for analysis debug purposes.  Results should not be used for     
+ any other purpose.                                                      
