@@ -3,12 +3,12 @@ This repository contains files pertaining to a one-day project I took up to buil
 ***
 <table>
   <tr>
-    <td>Mechanical Analysis (Actual Model)</td>
-    <td>Dynamics Analysis (for MSC Adams)</td>
+    <td>Mechanical Assembly (Actual Model)</td>
+    <td>Dynamics Assembly (for MSC Adams)</td>
   </tr>
   <tr>
-    <td><img src="Snapshots/CAD_Snapshots/Mechanical_Analysis.jpg" width=405 height=480></td>
-    <td><img src="Snapshots/CAD_Snapshots/Dynamics_Analysis.jpg"   width=405 height=480></td>
+    <td><img src="Snapshots/CAD_Snapshots/Mechanical_Assembly.jpg" width=405 height=480></td>
+    <td><img src="Snapshots/CAD_Snapshots/Dynamics_Assembly.jpg"   width=405 height=480></td>
   </tr>
 </table>
 
