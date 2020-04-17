@@ -8,7 +8,7 @@ This repository contains files pertaining to a one-day project I took up to buil
   </tr>
   <tr>
     <td><img src="Snapshots/CAD_Snapshots/Mechanical_Assembly.jpg" width=405 height=480></td>
-    <td><img src="Snapshots/CAD_Snapshots/Dynamics_Assembly.jpg"   width=405 height=480></td>
+    <td><img src="Snapshots/CAD_Snapshots/Dynamics_Assembly.jpg"   width=355 height=480></td>
   </tr>
 </table>
 
